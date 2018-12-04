@@ -1,0 +1,37 @@
+/* ~*BISMILLAHIR RAHMANIR RAHIM*~ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MX_N 52
+
+typedef long long intl;
+
+const int MX = 50;
+int n, K, m;
+intl ff[MX_N][MX_N][MX_N];
+
+int main()
+{
+  for(int i=0; i<=MX; i++) ff[0][0][i] = 1LL;
+  for(int i=1; i<=MX; i++)
+  {
+    for(int j=1; j<=MX; j++)
+    {
+      for(int k=1; k<=MX; k++)
+      {
+        for(int l=1; l<=k; l++)
+        {
+          if( i-l<0 ) break;
+          ff[i][j][k] += ff[i-l][j-1][k];
+        }
+      }
+    }
+  }
+
+  while( scanf("%d %d %d", &n, &K, &m)==3 )
+  {
+    printf("%lld\n", ff[n][K][m]);
+  }
+  return 0;
+}
